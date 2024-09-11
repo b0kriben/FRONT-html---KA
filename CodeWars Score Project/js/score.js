@@ -9,27 +9,27 @@ function search() {
         users.forEach(user => {
         let userName = user.firstChild.textContent.toLowerCase();
         let stringList = user.querySelector('ul');
-        let scores = stringList.querySelectorAll('li');
+        let students = stringList.querySelectorAll('li');
         if (!src) {
             user.style.display = "block";
-            scores.forEach(score => {
-                score.style.display = "block";
+            students.forEach(student => {
+                student.style.display = "block";
             });
         } else {
             if (userName.includes(src)) {
                 user.style.display = "block";
-                scores.forEach(score => {
-                    score.style.display = "block";
+                students.forEach(student => {
+                    student.style.display = "block";
                 });
             } else {
                 let result = false;
-                scores.forEach(student => {
-                    let scoreName = score.textContent.toLowerCase();
-                    if (scoreName.includes(src)) {
-                        score.style.display = "block";
+                students.forEach(student => {
+                    let studentName = student.textContent.toLowerCase();
+                    if (studentName.includes(src)) {
+                        student.style.display = "block";
                         result = true;
                     } else {
-                        score.style.display = "none";
+                    student.style.display = "none";
                     }
                 });
                 user.style.display = result ? "block" : "none";
@@ -52,33 +52,15 @@ async function load() {
         let list = document.getElementById('list');
         list.innerHTML = '';
         console.log(data);
-        data.forEach(course => {
+        data.forEach(username => {
             let li = document.createElement('li');
-            li.innerHTML = '(' + course.id + ') ' + course.name;
+            li.innerHTML = '(' + username.id + ') ' + username;
             let stringList = document.createElement('ul');
-            course.students.forEach(student => {
+            username.languages.forEach(language => {
                 let stringLi = document.createElement('li');
-                stringLi.textContent = '(' + student.id + ') ' + student.name;
-                let editB = document.createElement('button');
-                editB.textContent = 'Szerkesztés';
-                editB.onclick = () => editStudent(student.id, student.name, course.id);
-                let deleteB = document.createElement('button');
-                deleteB.textContent = 'Törlés';
-                deleteB.onclick = () => deleteStudent(student.id);
-                stringLi.appendChild(editB);
-                stringLi.appendChild(deleteB);
+                stringLi.textContent = '(' + language.id + ') ' + language.score;
                 stringList.appendChild(stringLi);
             });
-            let addStudentC = document.createElement('input');
-            addStudentC.type = "text";
-            addStudentC.placeholder = "Új diák hozzáadása";
-            let addStudentButton = document.createElement('button');
-            addStudentButton.textContent = "Diák hozzáadása";
-            addStudentButton.onclick = () => addStudent(course.id, addStudentC.value);
-            li.appendChild(stringList);
-            li.appendChild(addStudentC);
-            li.appendChild(addStudentButton);
-            list.appendChild(li);
         });
         document.getElementById("betoltes").style.display = "none";  
         } catch (error) {
