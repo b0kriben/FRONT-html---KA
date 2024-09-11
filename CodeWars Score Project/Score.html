@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeWars Score</title>
+    <link rel="stylesheet" href="css/score.css">
+</head>
+<body>
+    
+    <div class="h1div">
+        <h1>CodeWars-ban elért pontszámok.</h1>
+    </div>
+    
+    <div class="container">
+
+        <div class="szovegEsGombok">
+
+            <p>Keresés felhasználónév alapján:</p>           
+            <div class="topbar">
+                <form>
+                    <input type="text" id="kereses" placeholder="Felhasználó keresés..." autocomplete="off">
+                </form>
+            </div>
+
+            <div class="fejlec">
+                <div class="fejlecitem">
+                    <button id="betolt">felhasználó betöltése</button>
+                </div>
+                <div id="betoltes" style="display: none;">
+                </div>
+            </div>
+
+            <div class="ures"></div>
+            
+        </div>
+
+        <div class="lista">
+            <ul id="list"></ul>
+        </div>
+    </div> 
+
+    <script src="js/score.js"></script>
+</body>
+</html>

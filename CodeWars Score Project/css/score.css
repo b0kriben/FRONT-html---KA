@@ -1,0 +1,139 @@
+body {
+    background-color: rgb(0, 247, 255);
+    padding: 10px;
+}
+
+/*h1{
+    color: orangered;
+    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(51, 39, 97);
+    border: 2px black solid;
+    border-radius: 100px;
+    margin:  10px 200px 50PX 200PX;
+    text-align: center;
+}*/
+
+h1{
+    color: white;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: orangered;
+    border: 2px black solid;
+    border-radius: 100px;
+    text-align: center;
+    padding: 5px;
+}
+
+p{
+    font-weight: bolder;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 22px;
+}
+
+.h1div{
+    color: black;
+    background-color: rgb(51, 39, 97);
+    border: 2px black solid;
+    border-radius: 100px;
+    padding: 0px 100px;
+    margin:  10px 200px 50PX 200PX;
+    text-align: center;
+}
+
+.topbar {
+    background-color: white;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+}
+
+.szovegEsGombok{
+    flex: 30%;
+}
+
+.lista{
+    flex: 70%;
+}
+
+button {
+    background-color: orangered;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: 2px black solid;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#list {
+    list-style-type: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    background-color: rgb(51, 39, 97);
+    padding: 15px;
+    margin: 5px 0;
+    border: 2px black solid;
+    border-radius: 10px;
+    color: white;
+    font-size: large;
+}
+
+li li{
+    background-color: rgb(36, 28, 67);
+    padding: 15px;
+    margin: 5px 0;
+    border-radius: 10px;
+    color: white;
+    font-size: medium;
+}
+
+li li:hover{
+    background-color: rgb(25, 9, 78);
+    padding: 15px;
+    margin: 5px 0;
+    border-radius: 10px;
+    color: white;
+    font-size: medium;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.fejlec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.fejlecitem {
+    margin-right: 20px;
+}
+
+#betoltes {
+    color: white;
+    font-size: 20px;
+    margin-right: 65%;
+}
+
+.ures{
+    border: 5px black solid;
+    border-radius: 12px;
+}
