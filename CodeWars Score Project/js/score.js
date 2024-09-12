@@ -4,6 +4,40 @@ document.getElementById("kereses").addEventListener("input", search);
 
 //Felhasználó keresés
 function search() {
+    let src = document.getElementById("kereses").value.toLowerCase();
+    let users = document.querySelectorAll("#list > li");
+    users.forEach(username => {
+    let userName = username.firstChild.textContent.toLowerCase();
+    let stringList = username.querySelector('ul');
+    let overall = stringList.querySelectorAll('li');
+    if (!src) {
+        username.style.display = "block";
+        overall.forEach(languages  => {
+            languages .style.display = "block";
+        });
+    } else {
+        if (userName.includes(src)) {
+            user.style.display = "block";
+            overall.forEach(languages => {
+                languages .style.display = "block";
+            });
+        } else {
+            let result = false;
+            overall.forEach(languages  => {
+                let languagesName = languages .textContent.toLowerCase();
+                if (languagesName .includes(src)) {
+                    languages .style.display = "block";
+                    result = true;
+                } else {
+                    languages .style.display = "none";
+                }
+            });
+            username.style.display = result ? "block" : "none";
+        }
+    }
+});
+}
+/*function search() {
         let src = document.getElementById("kereses").value.toLowerCase();
         let users = document.querySelectorAll("#list > li");
         users.forEach(user => {
@@ -36,7 +70,7 @@ function search() {
             }
         }
     });
-}
+}*/
 
 
 //Felhasználó betöltése
@@ -56,9 +90,9 @@ async function load() {
             let li = document.createElement('li');
             li.innerHTML = '(' + username.id + ') ' + username;
             let stringList = document.createElement('ul');
-            username.languages.forEach(language => {
+            username.languages.forEach(languages => {
                 let stringLi = document.createElement('li');
-                stringLi.textContent = '(' + language.id + ') ' + language.score;
+                stringLi.textContent = '(' + languages.id + ') ' + languages.score;
                 stringList.appendChild(stringLi);
             });
         });

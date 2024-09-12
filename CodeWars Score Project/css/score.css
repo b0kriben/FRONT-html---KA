@@ -1,5 +1,6 @@
 body {
-    background-color: rgb(0, 247, 255);
+    /*background-color: aqua;*/
+    background-color: rgb(143, 143, 143);
     padding: 10px;
 }
 
@@ -122,7 +123,7 @@ input[type="text"] {
     margin-right: 65%;
 }
 
-.ures{
-    border: 5px black solid;
+/*.ures{
+    border: 5px aqua solid;
     border-radius: 12px;
-}
+}*/
