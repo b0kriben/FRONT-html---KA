@@ -1,104 +1,44 @@
-document.getElementById('betolt').addEventListener('click', load);
-document.getElementById("kereses").addEventListener("input", search);
 
-
-//Felhasználó keresés
-function search() {
-    let src = document.getElementById("kereses").value.toLowerCase();
-    let users = document.querySelectorAll("#list > li");
-    users.forEach(username => {
-    let userName = username.firstChild.textContent.toLowerCase();
-    let stringList = username.querySelector('ul');
-    let overall = stringList.querySelectorAll('li');
-    if (!src) {
-        username.style.display = "block";
-        overall.forEach(languages  => {
-            languages .style.display = "block";
-        });
-    } else {
-        if (userName.includes(src)) {
-            user.style.display = "block";
-            overall.forEach(languages => {
-                languages .style.display = "block";
-            });
+async function getUserData() {
+    const username = document.getElementById('username').value;
+    const url = `https://www.codewars.com/api/v1/users/${username}`;
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+  
+        if (response.ok) {
+            window.userData = data;
+            showTotalPoints();
         } else {
-            let result = false;
-            overall.forEach(languages  => {
-                let languagesName = languages .textContent.toLowerCase();
-                if (languagesName .includes(src)) {
-                    languages .style.display = "block";
-                    result = true;
-                } else {
-                    languages .style.display = "none";
-                }
-            });
-            username.style.display = result ? "block" : "none";
+            document.getElementById('result1').innerHTML = `Hiba: ${data.reason}`;
         }
+    } catch (error) {
+        document.getElementById('result1').innerHTML = `Hiba a lekérés során: ${error.message}`;
     }
-});
+  
+    const totalPoints = window.userData.ranks.overall.score;
+    if (!window.userData.name) {
+        document.getElementById('result1').innerHTML = `
+        <h2>Összesített pontok</h2>
+        <p><strong>${window.userData.username}</strong> felhasználó összesen <strong>${totalPoints}</strong> ponttal rendelkezik.</p>
+      `;
+    }
+    else {
+        document.getElementById('result1').innerHTML = `
+      <h2>Összesített pontok</h2>
+      <p><strong>${window.userData.username}</strong> felhasználó  azaz ${window.userData.name} összesen <strong>${totalPoints}</strong> ponttal rendelkezik.</p>
+    `;
+    }
+  
+    const languages = window.userData.ranks.languages;
+    let lista = `
+      <h2>Az elért pontok nyelvek szerint</h2>`;
+    for (const language in languages) {
+        lista += `
+        <dl>
+          <dt>${language}</dt>
+          <dd>${languages[language].score} pont</dd>
+        </dl>`;
+    }
+    document.getElementById('result2').innerHTML = lista;
 }
-/*function search() {
-        let src = document.getElementById("kereses").value.toLowerCase();
-        let users = document.querySelectorAll("#list > li");
-        users.forEach(user => {
-        let userName = user.firstChild.textContent.toLowerCase();
-        let stringList = user.querySelector('ul');
-        let students = stringList.querySelectorAll('li');
-        if (!src) {
-            user.style.display = "block";
-            students.forEach(student => {
-                student.style.display = "block";
-            });
-        } else {
-            if (userName.includes(src)) {
-                user.style.display = "block";
-                students.forEach(student => {
-                    student.style.display = "block";
-                });
-            } else {
-                let result = false;
-                students.forEach(student => {
-                    let studentName = student.textContent.toLowerCase();
-                    if (studentName.includes(src)) {
-                        student.style.display = "block";
-                        result = true;
-                    } else {
-                    student.style.display = "none";
-                    }
-                });
-                user.style.display = result ? "block" : "none";
-            }
-        }
-    });
-}*/
-
-
-//Felhasználó betöltése
-async function load() {
-    try{
-        document.getElementById("betoltes").style.display = "block";
-        const response = await fetch('https://www.codewars.com/api/v1/users/b0kriben')
-        const data = await response.json()
-        if (data)
-            data.forEach(element => {
-                console.log(element)
-        })
-        let list = document.getElementById('list');
-        list.innerHTML = '';
-        console.log(data);
-        data.forEach(username => {
-            let li = document.createElement('li');
-            li.innerHTML = '(' + username.id + ') ' + username;
-            let stringList = document.createElement('ul');
-            username.languages.forEach(languages => {
-                let stringLi = document.createElement('li');
-                stringLi.textContent = '(' + languages.id + ') ' + languages.score;
-                stringList.appendChild(stringLi);
-            });
-        });
-        document.getElementById("betoltes").style.display = "none";  
-        } catch (error) {
-            console.log('Hiba történt: ' + error);
-            document.getElementById("betoltes").style.display = "none";
-        }
-    }
