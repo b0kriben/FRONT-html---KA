@@ -58,7 +58,7 @@ input[type="text"] {
 button {
     margin: 10px;
     padding: 10px 20px;
-    font-size: 20px;
+    font-size: 15px;
     background-color: orangered;
     color: white;
     border-radius: 5px;
@@ -71,23 +71,30 @@ button:hover {
     transition-duration: 500ms;
 }
 
-.lekeres{
+.lekeres,
+.felhasznalo,
+.nyelv{
     height: 50px;
 }
 
 #result {
-    width: 50%;
+    width: 500px;
     background-color: rgb(51, 39, 97);
     border-radius: 5px;
     color: white;
     margin: 15px auto 0px auto;
-    padding: 20px;
+    padding: auto;
+}
+
+h2{
+    padding: 10px;
 }
 
 dl {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    padding: 10px;
 }
 
 dt{
@@ -109,14 +116,14 @@ dd {
 dt {
     background-color: rgb(25, 9, 78);
     color: orangered;
-    width: 120px;
+    width: 300px;
     border-radius: 10px;
 }
 
 dd {
     background-color: orangered;
     color: black;
-    width: 80px;
+    width: 250px;
     border-radius: 100px;
     padding-left: 20px;
 }

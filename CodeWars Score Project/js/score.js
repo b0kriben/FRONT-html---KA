@@ -1,4 +1,3 @@
-
 async function getUserData() {
     const username = document.getElementById('username').value;
     const url = `https://www.codewars.com/api/v1/users/${username}`;
@@ -8,37 +7,58 @@ async function getUserData() {
   
         if (response.ok) {
             window.userData = data;
-            showTotalPoints();
         } else {
-            document.getElementById('result1').innerHTML = `Hiba: ${data.reason}`;
+            document.getElementById('result').innerHTML = `Hiba: ${data.reason}`;
         }
     } catch (error) {
-        document.getElementById('result1').innerHTML = `Hiba a lekérés során: ${error.message}`;
+        document.getElementById('result').innerHTML = `Hiba a lekérés során: ${error.message}`;
     }
-  
-    const totalPoints = window.userData.ranks.overall.score;
-    if (!window.userData.name) {
-        document.getElementById('result1').innerHTML = `
-        <h2>Összesített pontok</h2>
-        <p><strong>${window.userData.username}</strong> felhasználó összesen <strong>${totalPoints}</strong> ponttal rendelkezik.</p>
-      `;
-    }
-    else {
-        document.getElementById('result1').innerHTML = `
-      <h2>Összesített pontok</h2>
-      <p><strong>${window.userData.username}</strong> felhasználó  azaz ${window.userData.name} összesen <strong>${totalPoints}</strong> ponttal rendelkezik.</p>
-    `;
-    }
-  
-    const languages = window.userData.ranks.languages;
-    let lista = `
-      <h2>Az elért pontok nyelvek szerint</h2>`;
-    for (const language in languages) {
-        lista += `
-        <dl>
-          <dt>${language}</dt>
-          <dd>${languages[language].score} pont</dd>
-        </dl>`;
-    }
-    document.getElementById('result2').innerHTML = lista;
+}
+
+async function showData(){
+  let username = document.getElementById("username").value;        
+  await fetch("https://www.codewars.com/api/v1/users/"+username)
+      .then(response => {                
+          return response.json()
+      })
+      .then(user => {                
+          let userData = `
+            <h2>A felhasználó adatai:</h2>
+              <dl>
+                <dt>Username: ${user.username}</dt>
+                <dd>ID: ${user.id}</dd>
+                <dd>Name: ${user.name}</dd>
+                <dd>Honor: ${user.honor}</dd>
+                <dd>Clan: ${user.clan}</dd>
+                <dd>Leaderboard Position: ${user.leaderboardPosition}</dd>
+              </dl>
+          `;
+          document.getElementById("result").innerHTML = userData;
+      })
+      .catch(error => {
+          document.getElementById("result").innerHTML = error;
+      });   
+}
+
+async function showLanguage(){
+  let username = document.getElementById("username").value;        
+  await fetch("https://www.codewars.com/api/v1/users/"+username)
+      .then(response => {                
+          return response.json()
+      })
+      .then(user => {                
+          let listaLanguage = `
+            <h2>Az elért pontok nyelvek szerint:</h2>
+              <dl>
+                <dt>C#</dt>
+                <dd>${user.ranks.languages.csharp.score} pont</dd><br>
+                <dt>Javascript</dt>
+                <dd>${user.ranks.languages.javascript.score} pont</dd>
+              </dl>
+          `;
+          document.getElementById("result").innerHTML = listaLanguage;
+      })
+      .catch(error => {
+          document.getElementById("result").innerHTML = error;
+      });    
 }
