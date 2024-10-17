@@ -1,0 +1,24 @@
+Terminal:
+npm init
+npm init -y
+npm i express
+node index.js   //start
+control c vagy x  // szerver újraindítása
+npm i nodemon --save-dev
+
+npm i ejs 	// az oldalon adatokat tudunk megjeleníteni	
+
+packeg.json:
+"type": "module",
+
+"script":{
+	"start": "nopde index.js",    // npm start
+	"dev": "nodemon index.js"     // npm run dev
+}
+
+
+telepíteni:
+code runer 
+file -> preferences-> settings-> interminal(pipa)
+
+
